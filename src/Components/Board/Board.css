@@ -1,0 +1,144 @@
+.board {
+  padding-left: 40px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.board input,
+.board button {
+  border: none;
+  border-radius: 3px;
+  padding: 5px 7px;
+  width: 10em;
+}
+
+.board button:active {
+  scale: 0.96;
+}
+
+.board button:hover {
+  cursor: pointer;
+}
+
+.thelistdiv {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.insidelist {
+  height: fit-content;
+  padding: 20px;
+  display: flex;
+  gap: 9px;
+  flex-direction: column;
+  border: 3px solid black;
+}
+
+.thecardss {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 10px;
+}
+
+.insidelist h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.listdiv {
+  margin-top: 30px;
+}
+
+.thecarddiv {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thecarddiv:hover {
+  cursor: pointer;
+}
+
+.thecarddiv:active {
+  scale: 0.94;
+}
+.Modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -200px;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+.Modal .thepopup {
+  width: 200px;
+}
+
+.Modal .thepopup label {
+  font-weight: 800;
+}
+
+.Modal .thepopup .textarea {
+  height: 40px;
+}
+
+.Modal .thepopup button {
+  padding: 10px 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  background-color: rgb(212, 203, 203);
+}
+
+.Modal .thepopup button:active {
+  scale: 0.92;
+}
+
+.Modal .thepopup button:hover {
+  cursor: pointer;
+}
+
+.Modal {
+  opacity: 1;
+}
+
+.deletebutton {
+  max-width: 25px;
+  max-height: 25px;
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.positiondelete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  /* background-color: aqua; */
+  min-width: 80px;
+  justify-content: space-between;
+  /* justify-content: space-between; */
+  width: max-content;
+
+  /* justify-content: space-between; */
+}

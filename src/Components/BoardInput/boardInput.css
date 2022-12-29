@@ -1,0 +1,29 @@
+.boardinput {
+  position: fixed;
+  margin-top: 370px;
+  margin-left: 200px;
+  padding: 30px;
+  color: black;
+  scale: 1.3;
+  border-radius: 3px;
+  background-color: bisque;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  gap: 10px;
+}
+
+inp label {
+  text-align: center;
+}
+
+.create:hover {
+  cursor: pointer;
+}
+
+.create:active {
+  scale: 0.92;
+}

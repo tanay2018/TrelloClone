@@ -1,0 +1,40 @@
+.Trello-Nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 50px;
+
+  gap: 50px;
+  background-color: #026AA7;
+  color: aliceblue;
+}
+
+.Trello-Nav .addbutton {
+  background-color: #033552;
+  border: none;
+  color: aliceblue;
+  font-weight: bolder;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.Trello-Nav .addbutton:hover {
+  cursor: pointer;
+}
+.Trello-Nav .addbutton:active {
+  scale: 0.92;
+}
+
+.Trello {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  flex-direction: column;
+}
+
+.Trello header {
+  width: 100%;
+}
