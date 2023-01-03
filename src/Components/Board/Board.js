@@ -46,24 +46,19 @@ export default function Board(props) {
     if (!overId) {
       return;
     }
+    // const activeContainer = active.data.current.sortable.containerId;
+    // const overContainer = over.data.current?.sortable.containerId || over.id;
+    // const activeIndex = active.data.current.sortable.index;
+
     const activeContainer = active.data.current.sortable.containerId;
-    const overContainer = over.data.current?.sortable.containerId || over.id;
-    const activeIndex = active.data.current.sortable.index;
-
-    // console.log(activeContainer, overContainer, activeIndex);
-
-    const cards = props.lists.filter((lis) => lis.id === overContainer)[0]
-      .cards;
-
-    const overIndex = props.lists
-      .map((lis) => lis.id)
-      .filter((id) => id === overContainer)
-      .includes(over.id)
-      ? cards.length + 1
-      : over.data.current.sortable.index;
-    //console.log(overIndex);
+    const overContainer = over.data.current?.sortable.containerId;
 
     if (activeContainer !== overContainer) {
+      const activeIndex = active.data.current.sortable.index;
+      const overIndex = over.data.current?.sortable.index || 0;
+      const cards = props.lists.filter((lis) => lis.id === activeContainer)[0]
+        .cards;
+      console.log(cards);
       props.handleBetween(
         activeContainer,
         activeIndex,
@@ -80,19 +75,10 @@ export default function Board(props) {
       return;
     }
     if (active.id !== over.id) {
-      // console.log(active);
       const activeContainer = active.data.current.sortable.containerId;
       const overContainer = over.data.current?.sortable.containerId || over.id;
       const activeIndex = active.data.current.sortable.index;
-      const cards = props.lists.filter((lis) => lis.id === overContainer)[0]
-        .cards;
-
-      const overIndex = props.lists
-        .map((lis) => lis.id)
-        .filter((id) => id === overContainer)
-        .includes(over.id)
-        ? cards.length + 1
-        : over.data.current.sortable.index;
+      const overIndex = over.data.current?.sortable.index || 0;
 
       console.log(overIndex);
 
@@ -100,8 +86,8 @@ export default function Board(props) {
         activeContainer,
         activeIndex,
         overContainer,
-        overIndex,
-        cards[activeIndex]
+        overIndex
+        // cards[activeIndex]
       );
     }
     setActiveId(null);

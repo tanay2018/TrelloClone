@@ -99,6 +99,7 @@ function App() {
       }
     }
     setlists(JSON.parse(localStorage.getItem(event.target.id)));
+    console.log(lists);
   }
 
   function deletecard(cardid, listid) {
@@ -257,8 +258,6 @@ function App() {
         item
       );
     });
-
-    console.log(lists);
   }
 
   function moveBetweenContainers(

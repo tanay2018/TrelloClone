@@ -44,8 +44,10 @@
 
 .thecardss {
   display: flex;
+  /* background-color: aqua; */
   flex-direction: column;
   padding: 0;
+  /* min-height: 400px; */
   gap: 10px;
 }
 
