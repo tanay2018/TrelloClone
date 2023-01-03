@@ -14,6 +14,11 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import {
+  arrayMove,
+  insertAtIndex,
+  removeAtIndex,
+} from "./Components/Utils/array";
 
 function App() {
   const [isShown, setIsShown] = useState(false);
@@ -53,7 +58,15 @@ function App() {
     }
   }
 
-  function editcard(desc) {
+  function changecardname(cardi) {
+    setCardname(cardi);
+  }
+
+  function changecarddesc(cardi) {
+    setDesc(cardi);
+  }
+  function editcard() {
+    // console.log(cardz);
     setlists((current) =>
       current.map((list) => {
         if (list.id === listid) {
@@ -120,16 +133,18 @@ function App() {
     console.log(boarddata);
   }
 
-  function cardclicked(listid, cardid, cardname) {
+  function cardclicked(listid, cardid) {
+    //console.log(listid, cardid, cardname);
     setListid(listid);
     setCardid(cardid);
-    setCardname(cardname);
+    console.log(lists);
 
     lists.forEach((list) => {
       if (list.id === listid) {
         list.cards.forEach((card) => {
           if (card.cardid === cardid) {
             setDesc(card.desc);
+            setCardname(card.cardname);
           }
         });
       }
@@ -182,6 +197,97 @@ function App() {
     return x;
   }
 
+  function handlend(
+    activeContainer,
+    activeIndex,
+    overContainer,
+    overIndex,
+    item
+  ) {
+    setlists((current) => {
+      let newitems;
+      if (activeContainer === overContainer) {
+        newitems = current.map((lis) => {
+          if (lis.id !== activeContainer) {
+            return lis;
+          } else {
+            return {
+              ...lis,
+              cards: arrayMove(lis.cards, activeIndex, overIndex),
+            };
+          }
+        });
+      } else {
+        newitems = current.map((lis) => {
+          if (lis.id !== activeContainer) {
+            return lis;
+          } else {
+            return {
+              ...lis,
+              cards: moveBetweenContainers(
+                lis.cards,
+                activeContainer,
+                activeIndex,
+                overContainer,
+                overIndex,
+                item
+              ),
+            };
+          }
+        });
+      }
+      return newitems;
+    });
+  }
+
+  function handleBetween(
+    activeContainer,
+    activeIndex,
+    overContainer,
+    overIndex,
+    item
+  ) {
+    setlists((current) => {
+      return moveBetweenContainers(
+        current,
+        activeContainer,
+        activeIndex,
+        overContainer,
+        overIndex,
+        item
+      );
+    });
+
+    console.log(lists);
+  }
+
+  function moveBetweenContainers(
+    lists,
+    activeContainer,
+    activeIndex,
+    overContainer,
+    overIndex,
+    item
+  ) {
+    return lists.map((lis) => {
+      if (lis.id !== activeContainer && lis.id !== overContainer) {
+        return lis;
+      } else {
+        if (lis.id === activeContainer) {
+          return {
+            ...lis,
+            cards: removeAtIndex(lis.cards, activeIndex),
+          };
+        } else {
+          return {
+            ...lis,
+            cards: insertAtIndex(lis.cards, overIndex, item),
+          };
+        }
+      }
+    });
+  }
+
   return (
     <div className="Trello" id="trello">
       <header className="Trello-header">
@@ -219,6 +325,10 @@ function App() {
           deletecard={deletecard}
           deletelist={deletelist}
           deleteboard={deleteboard}
+          changecardname={changecardname}
+          changecarddesc={changecarddesc}
+          handleBetween={handleBetween}
+          handlend={handlend}
         />
       )}
     </div>
