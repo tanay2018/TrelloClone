@@ -5,14 +5,13 @@ import { useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,
-  rectSortingStrategy,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
 export default function List(props) {
   const [cardname, setCardname] = useState("");
   const { setNodeRef } = useDroppable({
-    id: props.lis.id,
+    id: props.id,
   });
   return (
     <div key={props.lis.id} id={props.lis.id} className="insidelist">
@@ -37,11 +36,11 @@ export default function List(props) {
         </button>
       </div>
       <SortableContext
-        id={props.lis.id}
+        id={props.id}
         items={props.lis.cards.map((card) => card.cardid)}
         strategy={verticalListSortingStrategy}
       >
-        <ul className="thecardss" ref={setNodeRef} id={props.lis.id}>
+        <ul className="thecardss" ref={setNodeRef} id={props.id}>
           {props.lis.cards.map((card) => (
             <Card
               key={card.cardid}
@@ -53,23 +52,24 @@ export default function List(props) {
             />
           ))}
         </ul>
+
+        <form
+          className="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.addCards(e.target.parentNode.id, cardname);
+            setCardname("");
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Enter Card Title"
+            value={cardname}
+            onChange={(e) => setCardname(e.target.value)}
+          ></input>
+          <button>Add Card</button>
+        </form>
       </SortableContext>
-      <form
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          props.addCards(e.target.parentNode.id, cardname);
-          setCardname("");
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Enter Card Title"
-          value={cardname}
-          onChange={(e) => setCardname(e.target.value)}
-        ></input>
-        <button>Add Card</button>
-      </form>
     </div>
   );
 }

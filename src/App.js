@@ -5,16 +5,6 @@ import BoardInput from "./Components/BoardInput/BoardInput";
 import Board from "./Components/Board/Board";
 import { nanoid } from "nanoid";
 import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import {
   arrayMove,
   insertAtIndex,
   removeAtIndex,
@@ -66,7 +56,6 @@ function App() {
     setDesc(cardi);
   }
   function editcard() {
-    // console.log(cardz);
     setlists((current) =>
       current.map((list) => {
         if (list.id === listid) {
@@ -89,9 +78,7 @@ function App() {
 
   function handleclick(event) {
     setTitle(event.target.innerText);
-    // console.log(event.target.id);
     setBoardid(event.target.id);
-    // console.log(event.target.id);
 
     for (let x = 0; x < boarddata.length; x++) {
       if (boarddata[x].title === event.target.innerText) {
@@ -99,7 +86,6 @@ function App() {
       }
     }
     setlists(JSON.parse(localStorage.getItem(event.target.id)));
-    console.log(lists);
   }
 
   function deletecard(cardid, listid) {
@@ -122,23 +108,15 @@ function App() {
   }
 
   function deleteboard() {
-    //console.log(boarddata);
     setTitle("");
     setlists([]);
     setColor("");
     setBoardData((current) => current.filter((b) => b.id !== boardid));
-
-    // setBoardData([]);
-    // debugger;
-
-    console.log(boarddata);
   }
 
   function cardclicked(listid, cardid) {
-    //console.log(listid, cardid, cardname);
     setListid(listid);
     setCardid(cardid);
-    console.log(lists);
 
     lists.forEach((list) => {
       if (list.id === listid) {
@@ -150,11 +128,7 @@ function App() {
         });
       }
     });
-
-    // console.log(JSON.parse(localStorage.getItem(title)));
   }
-
-  // setBoardData((current) => current.filter((b) => b.id !== boardid));
 
   function addCards(listid, cardname) {
     if (cardname) {
@@ -185,7 +159,6 @@ function App() {
 
       setTitle(title);
       setColor(color);
-      // console.log(boarddata[boarddata.length - 1].id);
       setlists([]);
     }
 
@@ -303,10 +276,12 @@ function App() {
                 id={item.id}
                 onClick={handleclick}
               >
-                {item.title}
+                <span className="titlename">{item.title}</span>
               </div>
             ))}
-          {isShown && <BoardInput handleCreate={handleCreate} />}
+          {isShown && (
+            <BoardInput className="boardinput" handleCreate={handleCreate} />
+          )}
         </nav>
       </header>
       {title && (

@@ -35,19 +35,20 @@
 
 .insidelist {
   height: fit-content;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   gap: 9px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+  transition: 0.3s;
   flex-direction: column;
-  border: 3px solid black;
 }
 
 .thecardss {
   display: flex;
-  /* background-color: aqua; */
   flex-direction: column;
-  padding: 0;
-  /* min-height: 400px; */
+  padding: 10px 10px;
+  height: auto;
   gap: 10px;
 }
 
@@ -62,8 +63,11 @@
 
 .thecarddiv {
   padding: 5px;
+  text-overflow: clip;
+  width: 120px;
   border-radius: 5px;
-  background-color: blueviolet;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+  background-color: rgb(235, 229, 229);
   display: flex;
   justify-content: space-between;
 }
@@ -136,11 +140,7 @@
   flex-direction: row;
   align-items: center;
   gap: 50px;
-  /* background-color: aqua; */
   min-width: 80px;
   justify-content: space-between;
-  /* justify-content: space-between; */
   width: max-content;
-
-  /* justify-content: space-between; */
 }

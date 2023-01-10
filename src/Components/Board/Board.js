@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import { MdOutlineDelete } from "react-icons/md";
 import {
   DndContext,
-  DragOverlay,
   KeyboardSensor,
   closestCorners,
   MouseSensor,
@@ -13,7 +12,6 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import List from "../List/List";
-import Card from "../Card/Card";
 
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
@@ -33,32 +31,28 @@ export default function Board(props) {
     })
   );
 
-  const handleDragStart = ({ active }) => setActiveId(active.id);
+  const handleDragStart = ({ active }) => {
+    setActiveId(active.id);
+  };
 
   const handleDragCancel = () => setActiveId(null);
 
   const handleDragOver = ({ active, over }) => {
     const overId = over?.id;
 
-    console.log(active, "active");
-    console.log(over, "over");
-
     if (!overId) {
       return;
     }
-    // const activeContainer = active.data.current.sortable.containerId;
-    // const overContainer = over.data.current?.sortable.containerId || over.id;
-    // const activeIndex = active.data.current.sortable.index;
 
     const activeContainer = active.data.current.sortable.containerId;
-    const overContainer = over.data.current?.sortable.containerId;
+    const overContainer = over.data.current?.sortable.containerId || over.id;
 
     if (activeContainer !== overContainer) {
       const activeIndex = active.data.current.sortable.index;
       const overIndex = over.data.current?.sortable.index || 0;
       const cards = props.lists.filter((lis) => lis.id === activeContainer)[0]
         .cards;
-      console.log(cards);
+
       props.handleBetween(
         activeContainer,
         activeIndex,
@@ -74,23 +68,23 @@ export default function Board(props) {
       setActiveId(null);
       return;
     }
+
+    const activeContainer = active.data.current?.sortable.containerId;
+    const overContainer = over.data.current?.sortable.containerId || over.id;
     if (active.id !== over.id) {
-      const activeContainer = active.data.current.sortable.containerId;
-      const overContainer = over.data.current?.sortable.containerId || over.id;
       const activeIndex = active.data.current.sortable.index;
       const overIndex = over.data.current?.sortable.index || 0;
-
-      console.log(overIndex);
+      const cards = props.lists.filter((lis) => lis.id === activeContainer)[0]
+        .cards;
 
       props.handlend(
         activeContainer,
         activeIndex,
         overContainer,
-        overIndex
-        // cards[activeIndex]
+        overIndex,
+        cards[activeIndex]
       );
     }
-    setActiveId(null);
   };
   return (
     <div

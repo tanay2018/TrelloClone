@@ -1,11 +1,12 @@
 .Trello-Nav {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   padding-left: 50px;
-
+  height: auto;
   gap: 50px;
-  background-color: #026AA7;
+  background-color: #026aa7;
   color: aliceblue;
 }
 
@@ -37,4 +38,11 @@
 
 .Trello header {
   width: 100%;
+}
+
+.addbutton .titlename {
+  text-overflow: ellipsis;
+  max-width: 50px;
+  overflow: hidden;
+  pointer-events: none;
 }

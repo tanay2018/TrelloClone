@@ -1,3 +1,10 @@
 .dragbutton {
   max-width: 50px;
 }
+
+.thespan {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 60px;
+  pointer-events: none;
+}

@@ -2,6 +2,7 @@ import "./Card.css";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import "./Card.css";
 
 export default function Card(props) {
   const {
@@ -40,7 +41,7 @@ export default function Card(props) {
       {...attributes}
       // {...listeners}
     >
-      {props.card.cardname}
+      <span className="thespan"> {props.card.cardname}</span>
       <button ref={setActivatorNodeRef} {...listeners} className="dragbutton">
         Drag
       </button>
